@@ -671,7 +671,7 @@ $("metaZonas").textContent = new Set(PROPS.map(p=>p.ciudad)).size;
 $("yr").textContent = new Date().getFullYear();
 
 /* ---------- card ---------- */
-function cardHTML(p){
+function cardHTML(property){const p={...property};for(const key of ['titulo','ciudad','estado','tipo','operacion','folio','thumb','archivo'])p[key]=String(p[key]||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const specs=[];
   if(p.recamaras) specs.push(`<span class="spec">${IC.bed}${p.recamaras} rec</span>`);
   if(p.banos) specs.push(`<span class="spec">${IC.bath}${p.banos} ba&ntilde;os</span>`);
@@ -761,7 +761,7 @@ render();
  function play(){if(reduced||manualPaused||document.hidden)return;clearInterval(timer);timer=setInterval(()=>{if(!hovered&&!hero.contains(document.activeElement))show(current+1);},6500);pause.textContent='Ⅱ';pause.setAttribute('aria-label','Pausar carrusel');}
  const hero=document.querySelector('.hero');hero.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;stop();}});hero.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=false;play();}});hero.addEventListener('focusin',stop);hero.addEventListener('focusout',e=>{if(!hero.contains(e.relatedTarget))play();});hero.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;stop();},{passive:true});hero.addEventListener('touchend',e=>{if(startX!==null){const delta=e.changedTouches[0].clientX-startX;if(Math.abs(delta)>50)show(current+(delta<0?1:-1));startX=null;}play();},{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else play();});
  document.getElementById('filterToggle').onclick=function(){const open=this.getAttribute('aria-expanded')!=='true';this.setAttribute('aria-expanded',String(open));document.getElementById('extraFilters').classList.toggle('expanded',open);};
- window.addEventListener('catalog-updated',()=>{featured.forEach((p,i)=>{const el=slides.children[i];el.style.backgroundImage='url("'+p.thumb+'")';el.querySelector('img').src=p.thumb;el.querySelector('img').alt=p.titulo;});show(current);});show(0);play();
+ window.addEventListener('catalog-updated',()=>{featured.splice(0,featured.length,...PROPS.slice().sort((a,b)=>b.orden-a.orden).slice(0,5));dots.forEach((dot,i)=>dot.setAttribute('aria-label','Mostrar '+featured[i].titulo));featured.forEach((p,i)=>{const el=slides.children[i];el.style.backgroundImage='url("'+p.thumb+'")';el.querySelector('img').src=p.thumb;el.querySelector('img').alt=p.titulo;});show(current);});show(0);play();
 })();</script><div class="ov" id="fov">
   <div class="fmodal" role="dialog" aria-modal="true" aria-label="Agendar visita">
     <div class="fmodal-head">
