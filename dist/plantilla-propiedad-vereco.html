@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="docTitle">Plantilla de propiedad — Vereco Bienes Raíces</title>
+<meta name="description" id="metaDescription" content="Plantilla reutilizable para publicar propiedades de Vereco Bienes Raíces.">
+
+<!-- Open Graph: se actualiza desde el bloque PROPERTY -->
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogTitle" content="Propiedad en venta — Vereco Bienes Raíces">
+<meta property="og:description" id="ogDescription" content="Ficha de propiedad de Vereco Bienes Raíces.">
+<meta property="og:image" id="ogImage" content="">
+<meta property="og:locale" content="es_MX">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json" id="schemaJson">{}</script>
+
+<style>
+:root{
+  --pine:#10231f;      /* carbón-teal · marca (header/footer/bandas) */
+  --pine-2:#1a3a34;
+  --pine-soft:#2c5650;
+  --stone:#ece7dd;     /* neutro cálido · fondo */
+  --cream:#f8f5ef;     /* tarjetas */
+  --brass:#0f9b94;     /* turquesa marca · acento */
+  --brass-2:#34c5bd;   /* turquesa claro · acento sobre fondo oscuro */
+  --ink:#1b1e1c;
+  --muted:#5d635e;
+  --line:#d7d2c6;
+  --wa:#25d366;
+  --shadow:0 10px 40px -16px rgba(16,35,31,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Inter",system-ui,sans-serif;
+  background:var(--stone);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--brass);
+}
+h2{font-family:"Fraunces",serif;font-weight:600;line-height:1.1}
+
+/* ===== Header sticky ===== */
+.bar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 22px;
+  background:rgba(27,58,47,0);transition:background .3s,padding .3s,box-shadow .3s;
+}
+.bar.solid{background:var(--pine);box-shadow:0 6px 24px -12px rgba(0,0,0,.5);padding:10px 22px}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none}
+.brand .cube{width:38px;height:auto;flex:none;display:block}
+.brand .word{font-family:"Inter",sans-serif;line-height:1}
+.brand .word b{font-weight:600;font-size:1.18rem;letter-spacing:.02em;display:block;text-transform:lowercase}
+.brand .word span{display:block;font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;opacity:.82;font-weight:500;margin-top:3px}
+.bar .cta{
+  background:var(--wa);color:#fff;font-weight:600;font-size:.86rem;
+  padding:9px 16px;border-radius:999px;text-decoration:none;display:inline-flex;gap:7px;align-items:center;
+  transition:transform .15s;
+}
+.bar .cta:hover{transform:translateY(-1px)}
+.bar .cta svg{width:17px;height:17px;fill:#fff}
+
+/* ===== Hero ===== */
+.hero{position:relative;min-height:92vh;min-height:92svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:#000}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.86}
+.hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,28,25,.55) 0%,rgba(13,28,25,.15) 38%,rgba(10,22,19,.93) 100%)}
+.hero-inner{position:relative;z-index:2;padding-bottom:54px;width:100%}
+.hero .loc{display:inline-flex;align-items:center;gap:7px;font-size:.84rem;font-weight:500;
+  background:rgba(255,255,255,.14);backdrop-filter:blur(6px);padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2.1rem,5.5vw,4rem);line-height:1.04;letter-spacing:-.01em;max-width:14ch}
+.hero .sub{margin-top:10px;font-size:clamp(1rem,2vw,1.15rem);opacity:.92;font-weight:400;max-width:42ch}
+.price-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-top:26px}
+.price{font-family:"Fraunces",serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;color:#fff}
+.price .cur{color:var(--brass-2);font-size:.6em;font-weight:500;letter-spacing:.04em}
+.op-tag{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  border:1px solid rgba(255,255,255,.4);padding:5px 12px;border-radius:999px}
+.folio{font-size:.78rem;opacity:.7;letter-spacing:.05em}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:30px;
+  background:rgba(255,255,255,.18);border-radius:14px;overflow:hidden}
+.stat{background:rgba(16,30,24,.55);backdrop-filter:blur(4px);padding:16px 12px;text-align:center}
+.stat b{display:block;font-family:"Fraunces",serif;font-size:1.5rem;font-weight:600;line-height:1}
+.stat span{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.82;margin-top:5px;display:block}
+
+/* ===== sections ===== */
+section.block{padding:74px 0}
+.lead{font-size:1.12rem;color:var(--ink);max-width:62ch}
+.lead.muted{color:var(--muted)}
+h2.title{font-size:clamp(1.6rem,3.5vw,2.3rem);margin:8px 0 4px}
+
+/* descripción */
+.desc-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start;margin-top:30px}
+.ref-card{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+.ref-card h3{font-family:"Fraunces",serif;font-size:1.15rem;font-weight:600;margin-bottom:14px}
+.ref-card ul{list-style:none;display:grid;gap:11px}
+.ref-card li{display:flex;gap:11px;font-size:.94rem;color:var(--muted)}
+.ref-card li svg{width:18px;height:18px;flex:none;fill:var(--brass);margin-top:2px}
+
+/* ===== distribución (signature) ===== */
+.levels{margin-top:38px;position:relative}
+.level{display:grid;grid-template-columns:120px 1fr;gap:28px;position:relative;padding-bottom:38px}
+.level:last-child{padding-bottom:0}
+.level-line{position:absolute;left:24px;top:8px;bottom:0;width:2px;background:var(--line)}
+.level:last-child .level-line{display:none}
+.level-tag{position:relative}
+.level-tag .dot{width:50px;height:50px;border-radius:50%;background:var(--pine);color:#fff;
+  display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:1.25rem;
+  box-shadow:0 0 0 6px var(--stone)}
+.level-tag .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+  font-weight:600;margin-top:12px;line-height:1.3}
+.level-body h3{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:600;margin-bottom:12px}
+.level-body ul{list-style:none;display:grid;gap:8px}
+.level-body li{position:relative;padding-left:20px;color:var(--ink);font-size:.96rem}
+.level-body li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:2px;
+  background:var(--brass);transform:rotate(45deg)}
+
+/* ===== galería ===== */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.g-item{position:relative;border:none;padding:0;cursor:pointer;border-radius:12px;overflow:hidden;
+  aspect-ratio:4/3;background:#ccc;box-shadow:var(--shadow)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.g-item:hover img{transform:scale(1.07)}
+.g-item:focus-visible{outline:3px solid var(--brass)}
+.g-cap{position:absolute;left:0;right:0;bottom:0;color:#fff;font-size:.74rem;font-weight:500;
+  padding:18px 12px 9px;text-align:left;
+  background:linear-gradient(transparent,rgba(16,30,24,.82));opacity:0;transition:opacity .25s}
+.g-item:hover .g-cap,.g-item:focus-visible .g-cap{opacity:1}
+.g-item:first-child{grid-column:span 2;grid-row:span 2}
+
+/* ===== características ===== */
+.feat-band{background:var(--pine);color:#fff}
+.feat-band .eyebrow{color:var(--brass-2)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.feat{background:var(--pine-2);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
+.feat svg{width:24px;height:24px;fill:var(--brass-2);margin-bottom:12px}
+.feat b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.02rem;margin-bottom:4px}
+.feat p{font-size:.88rem;opacity:.82;margin:0}
+.equip{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.equip span{font-size:.85rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  padding:8px 15px;border-radius:999px}
+
+/* ===== ubicación / mapa ===== */
+.loc-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;margin-top:30px;align-items:stretch}
+.map-card{border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);
+  display:flex;flex-direction:column;background:var(--cream)}
+.map-card iframe{width:100%;flex:1;border:0;min-height:360px;display:block;filter:saturate(1.05)}
+.map-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px}
+.map-bar .addr{font-size:.84rem;color:var(--muted);display:flex;gap:8px;align-items:center}
+.map-bar .addr svg{width:16px;height:16px;fill:var(--brass);flex:none}
+.map-bar a{font-size:.82rem;font-weight:600;color:#fff;background:var(--pine);padding:9px 15px;border-radius:999px;
+  text-decoration:none;white-space:nowrap;display:inline-flex;gap:6px;align-items:center;transition:transform .15s}
+.map-bar a:hover{transform:translateY(-1px)}
+.map-bar a svg{width:15px;height:15px;fill:#fff}
+.near{display:grid;gap:20px;align-content:start}
+.near-cat h4{font-family:"Fraunces",serif;font-size:1.04rem;font-weight:600;display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.near-cat h4 svg{width:19px;height:19px;fill:var(--brass);flex:none}
+.near-cat ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+.near-cat li{font-size:.83rem;background:var(--cream);border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--ink)}
+.near-cat li b{color:var(--brass);font-weight:600}
+.routes{margin-top:30px;background:var(--pine);color:#fff;border-radius:18px;padding:28px 30px}
+.routes .eyebrow{color:var(--brass-2)}
+.routes h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.35rem;margin:6px 0 18px}
+.route-list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.route{display:flex;gap:13px;align-items:flex-start}
+.route .rn{width:30px;height:30px;border-radius:50%;background:var(--brass);color:#04241f;flex:none;
+  display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.route b{display:block;font-size:.97rem;margin-bottom:3px}
+.route span{font-size:.85rem;opacity:.82;line-height:1.45}
+
+/* ===== contacto CTA ===== */
+.contact{text-align:center}
+.contact .price{color:var(--ink)}
+.contact .price .cur{color:var(--brass)}
+.cta-big{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;
+  font-weight:700;font-size:1.05rem;padding:16px 30px;border-radius:999px;text-decoration:none;
+  margin-top:8px;box-shadow:0 14px 34px -12px rgba(37,211,102,.6);transition:transform .15s}
+.cta-big:hover{transform:translateY(-2px)}
+.cta-big svg{width:22px;height:22px;fill:#fff}
+.phone{margin-top:18px;font-size:.95rem;color:var(--muted)}
+.phone a{color:var(--pine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brass)}
+
+/* ===== footer ===== */
+footer{background:var(--ink);color:#cfd2c7;padding:40px 0;font-size:.86rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+footer .brand b{color:#fff}
+footer .disc{opacity:.5;font-size:.78rem;max-width:46ch}
+
+/* ===== floating WA ===== */
+.fab{position:fixed;right:20px;bottom:20px;z-index:55;width:58px;height:58px;border-radius:50%;
+  background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(37,211,102,.7);
+  animation:pulse 2.6s infinite}
+.fab svg{width:30px;height:30px;fill:#fff}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+/* ===== lightbox ===== */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(12,22,18,.96);display:none;
+  align-items:center;justify-content:center;flex-direction:column}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:78vh;border-radius:8px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb-cap{color:#fff;margin-top:16px;text-align:center;max-width:80vw}
+.lb-cap b{font-family:"Fraunces",serif;font-weight:600;display:block;font-size:1.1rem}
+.lb-cap span{opacity:.7;font-size:.88rem}
+.lb-count{color:var(--brass-2);font-size:.78rem;letter-spacing:.1em;margin-top:6px}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);
+  border:none;color:#fff;width:52px;height:52px;border-radius:50%;font-size:1.5rem;cursor:pointer;
+  display:grid;place-items:center;transition:background .2s}
+.lb-btn:hover{background:rgba(255,255,255,.22)}
+.lb-prev{left:18px}.lb-next{right:18px}
+.lb-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.1);border:none;color:#fff;
+  width:46px;height:46px;border-radius:50%;font-size:1.3rem;cursor:pointer}
+.lb-close:hover{background:rgba(255,255,255,.22)}
+
+@media(max-width:860px){
+  .desc-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .stat:nth-child(4),.stat:nth-child(5){border-top:1px solid rgba(255,255,255,.18)}
+  .level{grid-template-columns:64px 1fr;gap:16px}
+  .level-line{left:24px}
+  .loc-grid{grid-template-columns:1fr}
+  .route-list{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .gallery{grid-template-columns:1fr 1fr}
+  .g-item:first-child{grid-column:span 2;grid-row:span 1}
+  .lb-btn{width:44px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+}
+
+/* ===== Modal · Agendar visita (formulario de calificación de prospecto) ===== */
+.ov{position:fixed;inset:0;background:rgba(16,35,31,.6);display:none;align-items:center;justify-content:center;padding:18px;z-index:120}
+.ov.activo{display:flex}
+.fmodal{background:#fff;border-radius:16px;max-width:430px;width:100%;max-height:92vh;overflow-y:auto;
+  box-shadow:0 24px 60px rgba(0,0,0,.3);animation:sube .25s ease}
+@keyframes sube{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+.fmodal-head{padding:22px 24px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.fmodal-head h2{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:600;color:var(--pine);line-height:1.1}
+.fmodal-head p{font-size:.85rem;color:var(--muted);margin-top:4px}
+.fcerrar{background:none;border:none;font-size:1.7rem;line-height:1;color:var(--muted);cursor:pointer;flex:none}
+.fmodal-body{padding:18px 24px 8px}
+.fcampo{margin-bottom:15px}
+.fcampo label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;color:var(--ink)}
+.fcampo .req{color:#c0392b}
+.fcampo input,.fcampo select,.fcampo textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);
+  border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--cream);transition:border .15s}
+.fcampo input:focus,.fcampo select:focus,.fcampo textarea:focus{outline:none;border-color:var(--brass);background:#fff}
+.fcampo textarea{resize:vertical;min-height:62px}
+.fchips{display:flex;flex-wrap:wrap;gap:8px}
+.fchip{border:1px solid var(--line);background:var(--cream);border-radius:999px;padding:8px 14px;font-size:.85rem;cursor:pointer;transition:.15s;user-select:none}
+.fchip.sel{background:rgba(15,155,148,.12);border-color:var(--brass);color:var(--brass);font-weight:600}
+.fmodal-foot{padding:6px 24px 24px}
+.fbtn-wa{width:100%;border:none;cursor:pointer;font-size:1rem;font-weight:700;color:#fff;background:var(--wa);
+  padding:14px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:9px;transition:.2s}
+.fbtn-wa:hover{filter:brightness(.96)}
+.fnota{font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px}
+.ferr{font-size:.75rem;color:#c0392b;margin-top:5px;display:none}
+.ferr.show{display:block}
+
+
+/* ===== Helpers para plantilla reutilizable ===== */
+.hidden{display:none!important}
+.empty-gallery{margin-top:22px;background:var(--cream);border:1px dashed var(--line);border-radius:14px;padding:22px;color:var(--muted)}
+.hero-bg .placeholder-cover{width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,var(--pine),var(--pine-soft));color:rgba(255,255,255,.75);font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:30px}
+.template-note{background:rgba(15,155,148,.1);border:1px solid rgba(15,155,148,.25);color:var(--pine);border-radius:14px;padding:16px 18px;margin-top:18px;font-size:.9rem}
+</style>
+<style>/* Respaldo para visores sin JavaScript y Safari antiguo */
+.ph{min-height:230px}.g-item{position:relative} .g-item img{width:100%;height:100%;object-fit:cover}
+</style>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#top">
+    <svg class="cube" viewBox="0 0 120 124" role="img" aria-label="Vereco" xmlns="http://www.w3.org/2000/svg"><path d="M60 58 L98 39 L98 83 L60 102 Z" fill="#0f9b94"/><path d="M22 39 L60 58 L60 102 L22 83 Z" fill="none" stroke="#e6e9e0" stroke-width="3" stroke-linejoin="round"/><path d="M60 20 L98 39 L60 58 L22 39 Z" fill="none" stroke="#e6e9e0" stroke-width="3" stroke-linejoin="round"/><path d="M60 27.5 L84 39 L60 50.5 L36 39 Z" fill="none" stroke="#e6e9e0" stroke-width="2.2" stroke-linejoin="round" opacity=".75"/></svg>
+    <span class="word"><b>vereco</b><span>Bienes Ra&iacute;ces</span></span>
+  </a>
+  <a class="cta js-open-form" href="javascript:void(0)" role="button">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.943c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.943C23.94 8.694 22.797 5.652 20.52 3.449"/></svg>
+    Agendar visita
+  </a>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="hero-bg" id="heroBg"><img id="heroImg" src="" alt="Portada de la propiedad"></div>
+  <div class="hero-inner wrap">
+    <span class="loc">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5z"/></svg>
+      <span id="heroLocation">Ubicación de la propiedad</span>
+    </span>
+    <h1 id="heroTitle">Título comercial de la propiedad</h1>
+    <p class="sub" id="heroSubtitle">Subtítulo breve con los principales atractivos.</p>
+    <div class="price-row">
+      <span class="op-tag" id="operationType">En venta</span>
+      <span class="price" id="heroPrice"></span>
+      <span class="folio" id="folioText"></span>
+    </div>
+    <div class="stats" id="statsGrid"></div>
+  </div>
+</section>
+
+<!-- Descripción -->
+<section class="block">
+  <div class="wrap">
+    <span class="eyebrow" id="propertyEyebrow">La propiedad</span>
+    <h2 class="title" id="propertySectionTitle">Título de sección</h2>
+    <div class="desc-grid">
+      <div id="descriptionParagraphs"></div>
+      <aside class="ref-card">
+        <h3>De un vistazo</h3>
+        <ul id="quickFacts"></ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Galería -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Recorrido</span>
+    <h2 class="title" id="galleryTitle">Fotografías</h2>
+    <p class="lead muted" style="margin-top:6px" id="galleryHelp">Toca cualquier imagen para verla en grande.</p>
+    <div class="gallery" id="gallery"></div>
+    <div class="empty-gallery hidden" id="emptyGallery">Aquí aparecerá la galería cuando agreguemos las fotos de la propiedad.</div>
+  </div>
+</section>
+
+<!-- Distribución por niveles: se oculta si PROPERTY.levels está vacío -->
+<section class="block" id="levelsSection" style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <span class="eyebrow">Recorrido por niveles</span>
+    <h2 class="title">Distribución</h2>
+    <div class="levels" id="levelsList"></div>
+  </div>
+</section>
+
+<!-- Características -->
+<section class="block feat-band" id="featuresSection">
+  <div class="wrap">
+    <span class="eyebrow">Lo que la hace especial</span>
+    <h2 class="title" style="color:#fff">Características destacadas</h2>
+    <div class="feat-grid" id="featuresGrid"></div>
+    <div class="equip" id="equipmentTags"></div>
+  </div>
+</section>
+
+<!-- Ubicación y entorno -->
+<section class="block" style="padding-top:0" id="locationSection">
+  <div class="wrap">
+    <span class="eyebrow">Ubicación y entorno</span>
+    <h2 class="title" id="locationTitle">Ubicación de la propiedad</h2>
+    <p class="lead muted" style="margin-top:6px" id="locationDescription"></p>
+
+    <div class="loc-grid">
+      <div class="map-card">
+<p style="padding:14px 16px;background:#f8f5ef"><a href="https://www.google.com/maps/search/?api=1&amp;query=Direcci%C3%B3n%20o%20referencia%20de%20ubicaci%C3%B3n" target="_blank" rel="noopener">Ver ubicación en Google Maps ↗</a></p>
+        <iframe id="mapFrame" title="Mapa de la propiedad"></iframe>
+        <div class="map-bar">
+          <span class="addr">
+            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5z"/></svg>
+            <span id="mapAddress">Dirección o referencia de ubicación</span>
+          </span>
+          <a id="directionsLink" href="https://www.google.com/maps/search/?api=1&amp;query=Direcci%C3%B3n%20o%20referencia%20de%20ubicaci%C3%B3n" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M21.7 11.3l-9-9a1 1 0 00-1.4 0l-9 9a1 1 0 000 1.4l9 9a1 1 0 001.4 0l9-9a1 1 0 000-1.4zM14 14.5V12h-4v3H8v-4a1 1 0 011-1h5V7.5l3.5 3.5z"/></svg>
+            Cómo llegar
+          </a>
+        </div>
+      </div>
+
+      <div class="near" id="nearbyList"></div>
+    </div>
+
+    <div class="routes" id="routesBox">
+      <span class="eyebrow">Conectividad</span>
+      <h3>Accesos y salidas principales</h3>
+      <div class="route-list" id="routesList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section class="block contact">
+  <div class="wrap">
+    <span class="eyebrow">¿Te interesa?</span>
+    <h2 class="title">Agenda tu visita</h2>
+    <p class="lead muted" style="margin:10px auto 22px">Con gusto te muestro la propiedad y resuelvo todas tus dudas.</p>
+    <div class="price" style="margin-bottom:18px" id="contactPrice"></div>
+    <a class="cta-big js-open-form" href="javascript:void(0)" role="button">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.943c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.943C23.94 8.694 22.797 5.652 20.52 3.449"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <p class="phone">o llámame al <a id="phoneLink" href="tel:+527712090931">771 209 0931</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" style="color:#cfd2c7">
+      <svg class="cube" viewBox="0 0 120 124" role="img" aria-label="Vereco" xmlns="http://www.w3.org/2000/svg"><path d="M60 58 L98 39 L98 83 L60 102 Z" fill="#0f9b94"/><path d="M22 39 L60 58 L60 102 L22 83 Z" fill="none" stroke="#e6e9e0" stroke-width="3" stroke-linejoin="round"/><path d="M60 20 L98 39 L60 58 L22 39 Z" fill="none" stroke="#e6e9e0" stroke-width="3" stroke-linejoin="round"/><path d="M60 27.5 L84 39 L60 50.5 L36 39 Z" fill="none" stroke="#e6e9e0" stroke-width="2.2" stroke-linejoin="round" opacity=".75"/></svg>
+      <span class="word"><b>vereco</b><span>Bienes Ra&iacute;ces</span></span>
+    </a>
+    <p class="disc" id="footerDisclaimer">Información de carácter informativo, sujeta a cambios y disponibilidad sin previo aviso.</p>
+  </div>
+</footer>
+
+<a class="fab js-open-form" href="javascript:void(0)" role="button" aria-label="Agendar visita">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.943c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.358 11.944-11.943C23.94 8.694 22.797 5.652 20.52 3.449"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior">&#10094;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Siguiente">&#10095;</button>
+  <div class="lb-cap"><b id="lbTitle"></b><span id="lbDesc"></span><div class="lb-count" id="lbCount"></div></div>
+</div>
+
+<!-- ===== Modal · Agendar visita ===== -->
+<div class="ov" id="fov">
+  <div class="fmodal">
+    <div class="fmodal-head">
+      <div>
+        <h2>Agenda tu visita</h2>
+        <p>Cuéntame un poco para preparar tu visita. Toma 30 segundos.</p>
+      </div>
+      <button class="fcerrar" onclick="cerrarForm()" aria-label="Cerrar">&times;</button>
+    </div>
+
+    <div class="fmodal-body">
+      <div class="fcampo">
+        <label>Nombre <span class="req">*</span></label>
+        <input type="text" id="f-nombre" placeholder="Tu nombre completo">
+        <div class="ferr" id="f-err-nombre">Escribe tu nombre.</div>
+      </div>
+
+      <div class="fcampo">
+        <label>Propiedad de interés</label>
+        <input type="text" id="f-propiedad" readonly>
+      </div>
+
+      <div class="fcampo">
+        <label>Forma de pago <span class="req">*</span></label>
+        <div class="fchips" id="f-chips-pago">
+          <span class="fchip" data-val="Contado">Contado</span>
+          <span class="fchip" data-val="Crédito bancario">Crédito bancario</span>
+          <span class="fchip" data-val="Infonavit / Fovissste">Infonavit / Fovissste</span>
+        </div>
+        <div class="ferr" id="f-err-pago">Elige una opción.</div>
+      </div>
+
+      <div class="fcampo">
+        <label>¿Para cuándo buscas comprar?</label>
+        <select id="f-tiempo">
+          <option value="Lo antes posible">Lo antes posible</option>
+          <option value="1 a 3 meses">En 1 a 3 meses</option>
+          <option value="3 a 6 meses">En 3 a 6 meses</option>
+          <option value="Solo estoy explorando">Solo estoy explorando</option>
+        </select>
+      </div>
+
+      <div class="fcampo">
+        <label>Mensaje (opcional)</label>
+        <textarea id="f-mensaje" placeholder="¿Algo que deba saber? Días u horarios que te acomodan…"></textarea>
+      </div>
+    </div>
+
+    <div class="fmodal-foot">
+      <button class="fbtn-wa" onclick="enviarWhatsApp()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.1 5 5 0 0 0 1 2.6 11.4 11.4 0 0 0 4.4 3.9c2 .8 2 .6 2.4.5a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>
+        Enviar y abrir WhatsApp
+      </button>
+      <div class="fnota" id="formNote">Te contestaré personalmente por WhatsApp</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   PLANTILLA VERECO · CAMBIAR SOLO ESTE BLOQUE PARA CADA PROPIEDAD
+   ------------------------------------------------------------
+   1) Cambia textos, precio, ubicación, medidas y amenidades.
+   2) Agrega fotos en PHOTOS.
+      Puedes usar rutas: "imagenes/casa-01.jpg"
+      O base64: "data:image/jpeg;base64,..."
+   3) Si una sección no aplica, deja el arreglo vacío [] y se ocultará.
+   ============================================================ */
+const PROPERTY = {
+  brandName: "Vereco Bienes Raíces",
+  agentName: "Martín",
+  phoneDisplay: "771 209 0931",
+  whatsappNumber: "527712090931",
+
+  propertyType: "Casa en venta",
+  operationType: "En venta",
+  folio: "VER-00",
+  price: 0,
+  currency: "MXN",
+
+  pageTitle: "Casa en venta · Ubicación — Vereco Bienes Raíces",
+  metaDescription: "Descripción breve para Google y vista previa al compartir el enlace.",
+  ogImage: "", // URL pública de portada cuando ya esté en hosting
+
+  heroLocation: "Colonia / Fraccionamiento · Ciudad, Estado",
+  heroTitle: "Título comercial fuerte de la propiedad",
+  heroSubtitle: "Resumen corto con metros, recámaras, ubicación y principal atractivo.",
+
+  sectionEyebrow: "La propiedad",
+  sectionTitle: "Título de la sección descriptiva",
+  description: [
+    "Primer párrafo comercial de la propiedad. Aquí explicamos estilo, distribución, amplitud, luz, acabados y atractivo principal.",
+    "Segundo párrafo con beneficios: seguridad, ubicación, equipamiento, plusvalía, forma de pago o detalles importantes."
+  ],
+
+  stats: [
+    { value: "000", label: "m² terreno" },
+    { value: "000", label: "m² construcción" },
+    { value: "0", label: "Recámaras" },
+    { value: "0", label: "Baños" },
+    { value: "0", label: "Autos" }
+  ],
+
+  quickFacts: [
+    "000 m² de terreno · 000 m² de construcción",
+    "0 recámaras y 0 baños",
+    "Amenidad o característica principal",
+    "Tipo de estacionamiento o seguridad",
+    "Forma de pago o documentación relevante"
+  ],
+
+  levels: [
+    { tag: "PB", label: "Nivel social", title: "Acceso y áreas sociales", items: ["Sala", "Comedor", "Cocina", "Medio baño"] },
+    { tag: "1", label: "Descanso", title: "Recámaras", items: ["Recámara principal", "Recámaras secundarias", "Baño completo"] }
+  ],
+
+  features: [
+    { title: "Característica destacada", text: "Explica el beneficio concreto para el comprador." },
+    { title: "Otra característica", text: "Mantén textos cortos para que se vea limpio." },
+    { title: "Amenidad", text: "Jardín, terraza, roof garden, vigilancia, cisterna, etc." }
+  ],
+
+  equipment: ["Etiqueta 1", "Etiqueta 2", "Etiqueta 3"],
+
+  locationTitle: "Ubicación estratégica",
+  locationDescription: "Describe la zona, vialidades, comercios cercanos, servicios y ventaja de vivir o invertir ahí.",
+  mapAddress: "Dirección o referencia de ubicación",
+  mapEmbedUrl: "", // Pega aquí el iframe src de OpenStreetMap o Google Maps
+  directionsUrl: "", // Ejemplo: https://www.google.com/maps/dir/?api=1&destination=20.0000,-98.0000
+
+  nearby: [
+    { category: "Abasto y servicios", items: ["Supermercado · 5 min", "Plaza comercial · 8 min"] },
+    { category: "Salud", items: ["Hospital / clínica cercana", "Farmacias"] },
+    { category: "Educación", items: ["Escuelas cercanas", "Universidades"] }
+  ],
+
+  routes: [
+    { title: "Vialidad principal", text: "Conexión rápida a la zona comercial o salida de la ciudad." },
+    { title: "Acceso secundario", text: "Otra ruta útil para el comprador." }
+  ]
+};
+
+const PHOTOS = [
+  // EJEMPLO:
+  // { s: "imagenes/fachada.jpg", t: "Fachada", c: "Vista principal de la propiedad." },
+  // { s: "imagenes/sala.jpg", t: "Sala", c: "Espacio amplio con iluminación natural." }
+];
+</script>
+
+<script>
+/* ============================================================
+   MOTOR DE LA PLANTILLA · NO TOCAR NORMALMENTE
+   ============================================================ */
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const setText = (id, value) => { const el = $(id); if(el) el.textContent = value || ""; };
+  const money = (value, currency) => {
+    if(!value || Number(value) <= 0) return "Precio a consultar";
+    return new Intl.NumberFormat('es-MX', { style:'currency', currency:currency || 'MXN', maximumFractionDigits:0 }).format(value) + " " + (currency || 'MXN');
+  };
+  const checkIcon = '<svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z"/></svg>';
+  const genericIcon = '<svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3z"/></svg>';
+
+  function priceHTML(){
+    if(!PROPERTY.price || Number(PROPERTY.price) <= 0) return '<span class="cur"></span>Precio a consultar';
+    const num = new Intl.NumberFormat('es-MX', { maximumFractionDigits:0 }).format(PROPERTY.price);
+    return '<span class="cur">$</span>' + num + ' <span class="cur">' + (PROPERTY.currency || 'MXN') + '</span>';
+  }
+
+  function applyMeta(){
+    document.title = PROPERTY.pageTitle || PROPERTY.heroTitle || 'Propiedad — Vereco Bienes Raíces';
+    $('metaDescription').setAttribute('content', PROPERTY.metaDescription || PROPERTY.heroSubtitle || 'Ficha de propiedad.');
+    $('ogTitle').setAttribute('content', PROPERTY.pageTitle || PROPERTY.heroTitle || 'Propiedad — Vereco Bienes Raíces');
+    $('ogDescription').setAttribute('content', PROPERTY.metaDescription || PROPERTY.heroSubtitle || 'Ficha de propiedad.');
+    if(PROPERTY.ogImage) $('ogImage').setAttribute('content', PROPERTY.ogImage);
+
+    const schema = {
+      "@context":"https://schema.org",
+      "@type":"Residence",
+      "name": PROPERTY.heroTitle,
+      "description": PROPERTY.metaDescription || PROPERTY.heroSubtitle,
+      "address": { "@type":"PostalAddress", "streetAddress": PROPERTY.mapAddress || PROPERTY.heroLocation, "addressCountry":"MX" },
+      "offers": { "@type":"Offer", "price": String(PROPERTY.price || ''), "priceCurrency": PROPERTY.currency || 'MXN' }
+    };
+    $('schemaJson').textContent = JSON.stringify(schema, null, 2);
+  }
+
+  function renderBasic(){
+    setText('heroLocation', PROPERTY.heroLocation);
+    setText('heroTitle', PROPERTY.heroTitle);
+    setText('heroSubtitle', PROPERTY.heroSubtitle);
+    setText('operationType', PROPERTY.operationType || 'En venta');
+    setText('folioText', PROPERTY.folio ? 'Folio ' + PROPERTY.folio : '');
+    $('heroPrice').innerHTML = priceHTML();
+    $('contactPrice').innerHTML = priceHTML();
+    setText('propertyEyebrow', PROPERTY.sectionEyebrow || 'La propiedad');
+    setText('propertySectionTitle', PROPERTY.sectionTitle || 'Descripción de la propiedad');
+    setText('locationTitle', PROPERTY.locationTitle || 'Ubicación');
+    setText('locationDescription', PROPERTY.locationDescription || '');
+    setText('mapAddress', PROPERTY.mapAddress || PROPERTY.heroLocation || '');
+    setText('footerDisclaimer', 'Información de carácter informativo, sujeta a cambios y disponibilidad sin previo aviso. ' + (PROPERTY.heroLocation || '') + ' · ' + (PROPERTY.phoneDisplay || ''));
+    setText('formNote', 'Te contestaré personalmente por WhatsApp · ' + (PROPERTY.phoneDisplay || ''));
+    $('phoneLink').textContent = PROPERTY.phoneDisplay || '';
+    $('phoneLink').href = 'tel:+' + (PROPERTY.whatsappNumber || '').replace(/\D/g,'');
+
+    document.querySelectorAll('.js-open-form').forEach(a => {
+      a.addEventListener('click', () => abrirForm((PROPERTY.propertyType || 'Propiedad') + (PROPERTY.folio ? ' (Folio ' + PROPERTY.folio + ')' : '')));
+    });
+  }
+
+  function renderStats(){
+    const grid = $('statsGrid'); grid.innerHTML = '';
+    (PROPERTY.stats || []).forEach(s => {
+      const div = document.createElement('div'); div.className = 'stat';
+      div.innerHTML = '<b>' + (s.value || '') + '</b><span>' + (s.label || '') + '</span>';
+      grid.appendChild(div);
+    });
+  }
+
+  function renderDescription(){
+    const box = $('descriptionParagraphs'); box.innerHTML = '';
+    (PROPERTY.description || []).forEach((txt, i) => {
+      const p = document.createElement('p'); p.className = 'lead muted';
+      if(i) p.style.marginTop = '16px';
+      p.textContent = txt;
+      box.appendChild(p);
+    });
+
+    const facts = $('quickFacts'); facts.innerHTML = '';
+    (PROPERTY.quickFacts || []).forEach(f => {
+      const li = document.createElement('li'); li.innerHTML = checkIcon + ' ' + f;
+      facts.appendChild(li);
+    });
+  }
+
+  function renderGallery(){
+    const gal = $('gallery'); gal.innerHTML = '';
+    const empty = $('emptyGallery');
+    if(!PHOTOS.length){
+      $('heroBg').innerHTML = '<div class="placeholder-cover">Agregar foto de portada</div>';
+      $('galleryTitle').textContent = 'Fotografías pendientes';
+      empty.classList.remove('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+    $('heroImg').src = PHOTOS[0].s;
+    $('heroImg').alt = PHOTOS[0].t || PROPERTY.heroTitle || 'Portada de propiedad';
+    $('galleryTitle').textContent = PHOTOS.length + (PHOTOS.length === 1 ? ' fotografía' : ' fotografías');
+
+    PHOTOS.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.className = 'g-item'; b.dataset.i = i;
+      b.setAttribute('aria-label', 'Ver foto ' + (i+1) + ': ' + (p.t || 'Foto'));
+      const img = document.createElement('img');
+      img.loading = 'eager'; img.src = p.s; img.alt = p.t || 'Foto de la propiedad';
+      const cap = document.createElement('span');
+      cap.className = 'g-cap'; cap.textContent = p.t || 'Foto';
+      b.append(img, cap);
+      b.addEventListener('click', () => openLightbox(i));
+      gal.appendChild(b);
+    });
+  }
+
+  function renderLevels(){
+    const sec = $('levelsSection'), list = $('levelsList'); list.innerHTML = '';
+    if(!(PROPERTY.levels || []).length) { sec.classList.add('hidden'); return; }
+    sec.classList.remove('hidden');
+    PROPERTY.levels.forEach(level => {
+      const div = document.createElement('div'); div.className = 'level';
+      div.innerHTML = '<div class="level-line"></div>' +
+        '<div class="level-tag"><div class="dot">' + (level.tag || '') + '</div><div class="lbl">' + (level.label || '') + '</div></div>' +
+        '<div class="level-body"><h3>' + (level.title || '') + '</h3><ul>' +
+        (level.items || []).map(item => '<li>' + item + '</li>').join('') +
+        '</ul></div>';
+      list.appendChild(div);
+    });
+  }
+
+  function renderFeatures(){
+    const grid = $('featuresGrid'), tags = $('equipmentTags'), sec = $('featuresSection');
+    grid.innerHTML = ''; tags.innerHTML = '';
+    if(!(PROPERTY.features || []).length && !(PROPERTY.equipment || []).length) { sec.classList.add('hidden'); return; }
+    sec.classList.remove('hidden');
+    (PROPERTY.features || []).forEach(f => {
+      const div = document.createElement('div'); div.className = 'feat';
+      div.innerHTML = genericIcon + '<b>' + (f.title || '') + '</b><p>' + (f.text || '') + '</p>';
+      grid.appendChild(div);
+    });
+    (PROPERTY.equipment || []).forEach(t => { const span = document.createElement('span'); span.textContent = t; tags.appendChild(span); });
+  }
+
+  function renderLocation(){
+    const map = $('mapFrame'), dir = $('directionsLink'), near = $('nearbyList'), routes = $('routesList');
+    if(PROPERTY.mapEmbedUrl) map.src = PROPERTY.mapEmbedUrl;
+    else map.src = 'about:blank';
+    if(PROPERTY.directionsUrl) dir.href = PROPERTY.directionsUrl;
+    else dir.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(PROPERTY.mapAddress || PROPERTY.heroLocation || '');
+
+    near.innerHTML = '';
+    (PROPERTY.nearby || []).forEach(cat => {
+      const div = document.createElement('div'); div.className = 'near-cat';
+      div.innerHTML = '<h4>' + genericIcon + ' ' + (cat.category || '') + '</h4><ul>' +
+        (cat.items || []).map(item => '<li>' + item + '</li>').join('') + '</ul>';
+      near.appendChild(div);
+    });
+
+    routes.innerHTML = '';
+    if(!(PROPERTY.routes || []).length) $('routesBox').classList.add('hidden');
+    else {
+      $('routesBox').classList.remove('hidden');
+      PROPERTY.routes.forEach((r, i) => {
+        const div = document.createElement('div'); div.className = 'route';
+        div.innerHTML = '<span class="rn">' + (i+1) + '</span><div><b>' + (r.title || '') + '</b><span>' + (r.text || '') + '</span></div>';
+        routes.appendChild(div);
+      });
+    }
+  }
+
+  // Header sticky
+  const bar = $('bar');
+  addEventListener('scroll', () => bar.classList.toggle('solid', scrollY > 60));
+
+  // Lightbox
+  const lb = $('lb'), lbImg = $('lbImg'), lbTitle = $('lbTitle'), lbDesc = $('lbDesc'), lbCount = $('lbCount');
+  let idx = 0;
+  function showLightbox(i){
+    if(!PHOTOS.length) return;
+    idx = (i + PHOTOS.length) % PHOTOS.length;
+    const p = PHOTOS[idx];
+    lbImg.src = p.s; lbImg.alt = p.t || 'Foto';
+    lbTitle.textContent = p.t || '';
+    lbDesc.textContent = p.c || '';
+    lbCount.textContent = (idx+1) + ' / ' + PHOTOS.length;
+  }
+  window.openLightbox = function(i){ showLightbox(i); lb.classList.add('open'); document.body.style.overflow='hidden'; };
+  function closeLightbox(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  $('lbClose').onclick = closeLightbox;
+  $('lbPrev').onclick = () => showLightbox(idx-1);
+  $('lbNext').onclick = () => showLightbox(idx+1);
+  lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
+  addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLightbox();
+    if(e.key==='ArrowLeft') showLightbox(idx-1);
+    if(e.key==='ArrowRight') showLightbox(idx+1);
+  });
+  let x0=null;
+  lb.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+  lb.addEventListener('touchend', e => {
+    if(x0===null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 45) showLightbox(idx + (dx<0?1:-1));
+    x0=null;
+  });
+
+  // Formulario de calificación → WhatsApp
+  let formaPago = "";
+  window.abrirForm = function(propiedad){
+    $('f-propiedad').value = propiedad || "";
+    $('fov').classList.add('activo');
+    document.body.style.overflow = 'hidden';
+  };
+  window.cerrarForm = function(){
+    $('fov').classList.remove('activo');
+    document.body.style.overflow = '';
+  };
+  $('fov').addEventListener('click', function(e){ if(e.target.id === 'fov') cerrarForm(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && $('fov').classList.contains('activo')) cerrarForm(); });
+  document.querySelectorAll('#f-chips-pago .fchip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('#f-chips-pago .fchip').forEach(function(c){ c.classList.remove('sel'); });
+      chip.classList.add('sel'); formaPago = chip.dataset.val; $('f-err-pago').classList.remove('show');
+    });
+  });
+  window.enviarWhatsApp = function(){
+    const nombre = $('f-nombre').value.trim();
+    const propiedad = $('f-propiedad').value;
+    const tiempo = $('f-tiempo').value;
+    const mensaje = $('f-mensaje').value.trim();
+    let ok = true;
+    if(!nombre){ $('f-err-nombre').classList.add('show'); ok = false; } else $('f-err-nombre').classList.remove('show');
+    if(!formaPago){ $('f-err-pago').classList.add('show'); ok = false; }
+    if(!ok) return;
+    let texto = "¡Hola " + (PROPERTY.agentName || '') + "! Quiero agendar una visita 🏡\n\n" +
+      "👤 Nombre: " + nombre + "\n" +
+      "🏠 Propiedad: " + propiedad + "\n" +
+      "💳 Forma de pago: " + formaPago + "\n" +
+      "📅 Busca comprar: " + tiempo;
+    if(mensaje) texto += "\n📝 Nota: " + mensaje;
+    const url = "https://wa.me/" + (PROPERTY.whatsappNumber || '').replace(/\D/g,'') + "?text=" + encodeURIComponent(texto);
+    const a = document.createElement('a');
+    a.href = url; a.target = "_blank"; a.rel = "noopener";
+    document.body.appendChild(a); a.click(); a.remove(); cerrarForm();
+  };
+
+  applyMeta();
+  renderBasic();
+  renderStats();
+  renderDescription();
+  renderGallery();
+  renderLevels();
+  renderFeatures();
+  renderLocation();
+})();
+</script>
+</body>
+</html>
