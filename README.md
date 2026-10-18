@@ -1,5 +1,23 @@
 # vinext-starter
 
+## Variables de entorno de Vereco
+
+Edita `.env.local` en la raíz del proyecto y completa `SUPABASE_URL`,
+`SUPABASE_PUBLISHABLE_KEY` (publishable o anon) y `PUBLISH_SECRET` (un secreto
+aleatorio para autorizar publicación). `.env.example` sirve de plantilla.
+No uses claves service_role ni secret de Supabase.
+
+Ejecuta `npm run dev` y reinicia el servidor después de cambiar las variables.
+Cloudflare carga los archivos `.env` en el entorno del Worker durante desarrollo;
+no crees `.dev.vars`, porque tiene prioridad sobre `.env.local`.
+Las variables de Supabase tienen prioridad sobre la configuración guardada en R2.
+Si ambas están vacías, se conserva la configuración anterior de R2. Si solo
+completas una, la aplicación devuelve un error de configuración.
+
+`.env.local` está excluido de Git. Para producción, configura las mismas
+variables en el entorno del hosting; el archivo local no se publica.
+Documentación: https://developers.cloudflare.com/workers/local-development/environment-variables/
+
 A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
 
 ## Prerequisites
